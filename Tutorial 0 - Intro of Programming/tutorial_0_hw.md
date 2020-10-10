@@ -32,7 +32,7 @@ uint64_t factorial(uint32_t f) {
 int main() {
     // You can modify main function for testing purpose
     for (int i = 0; i < 15; i++) {
-        printf("%d! = %d\n", i, factorial(i));
+        printf("%d! = %lu\n", i, factorial(i));
     }
     return 0;
 }
@@ -45,7 +45,7 @@ int main() {
 ## Q2: Taylor series of sin(x), at a = 0 (15 marks)
 In this task, you need to implement a sine function.
 
-In math, the $\sin$ function can be expanded using the Taylor Series:
+In math, the `sin` function can be expanded using the Taylor Series:
 
 ![](https://i.imgur.com/FMW41vY.png)
 
@@ -53,7 +53,7 @@ The more terms in the expansion, the more precise the value. In this task, we ex
 
 ![](https://i.imgur.com/sJjwC2r.png)
 
-Use the above series to edit the code below so that `float taylor_series_sin(float radian)` can return value of sine properly.
+Use the above series to edit the code below so that `float taylor_series_sin(float radian)` can return the value of sine properly.
 
 ```C
 #include <stdint.h>
@@ -64,7 +64,7 @@ uint64_t factorial(uint32_t f) {
     return 0;
 }
 
-float pow(float x, int y) {
+float _pow(float x, int y) {
     // Please complete the function body
     return 0.0f;
 }
@@ -84,6 +84,7 @@ int main() {
 
 ### Note
 * You cannot include `<math.h>`.
+* You may not use the `pow()` function provided by the C standard library.
 
 ## Q3: Roman Numeral Converter (25 marks)
 
