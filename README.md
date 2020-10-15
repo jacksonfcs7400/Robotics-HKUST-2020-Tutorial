@@ -2,6 +2,9 @@
 
 ## **Tutorials**
 **Tutorial 0 - Basics of C:**
+
+Note: [Hackmd](https://hackmd.io/@DannyLau1205/Sy4vX-oSw), [Github](https://github.com/HKUST-Robotics-Team/Robotics-HKUST-2020-Tutorial/blob/main/Tutorial%200%20-%20Intro%20of%20Programming/note.md)
+(Both are the same but hackmd supports better formatting)
 > Video 1:
 * Hello World
 * I/O
@@ -20,6 +23,21 @@
 > Video 5:
 * How to submit HW via github
 * Link to HW repo: https://github.com/HKUST-Robotics-Team/SoftwareTutorialHW2020
+
+**Tutorial 1 - Advanced C:**
+> Video 1:
+* Pointers
+> Video 2:
+* Enumeration
+> Video 3:
+* Struct
+> Video 4:
+* Union
+> Video 5:
+* Typedef
+> Video 6:
+* Preprocessors
+* Other Keywords (e.g. static extern inline volatile)
 
 Exact Timetable:
 | Day   | Sunday | Monday | Tuesday     | Wednesday                            | Thursday      | Friday | Saturday      |
