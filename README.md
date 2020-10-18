@@ -28,13 +28,13 @@ Note: [Hackmd](https://hackmd.io/@DannyLau1205/Sy4vX-oSw), [Github](https://gith
 > Video 1:
 * Pointers
 > Video 2:
-* Enumeration
-> Video 3:
-* Struct
-> Video 4:
-* Union
-> Video 5:
 * Typedef
+> Video 3:
+* Enumeration
+> Video 4:
+* Struct
+> Video 5:
+* Union
 > Video 6:
 * Preprocessors
 * Other Keywords (e.g. static extern inline volatile)

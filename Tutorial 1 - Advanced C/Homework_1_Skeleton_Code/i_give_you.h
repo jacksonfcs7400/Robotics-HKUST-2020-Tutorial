@@ -33,7 +33,7 @@ typedef struct {
     int month;
     int year;
     DAYS day;
-    char name_of_special_day[30];
+    char name_of_holiday[50];
 } day_info;
 
 void opening(){
@@ -44,9 +44,14 @@ void opening(){
 }
 
 void choice_menu(){
-  printf("Please select your choie: \n");
+  printf("Please select your choice: \n");
   printf("D: Date Input \n");
   printf("I: Import From File \n");
   printf("S: Select Saved Data \n");
-  printf("E: END_PROGRAM \n");
+  printf("E: End Program \n");
+}
+
+void invalid_input_msg(){
+  printf("Invalid input!\n");
+  printf("Please input your choice again: \n");
 }

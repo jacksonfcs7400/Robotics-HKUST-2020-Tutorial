@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 #include "i_give_you.h"
 
 /*
@@ -11,25 +12,10 @@
 *
 */
 
-bool is_valid_choice(char choice) {
-  return false;
-}
-
-void date_input() {
-
-}
-
-void import_from_file(){
-
-}
-
-void select_saved_data(){
-
-}
-
 void main_loop(){
 
 }
+
 /*
 *
 * Your code ends here
