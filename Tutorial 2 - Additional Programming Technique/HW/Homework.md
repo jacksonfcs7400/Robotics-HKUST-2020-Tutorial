@@ -1,6 +1,17 @@
 # FSM & Libraries Homework
 
-**Note**: Finish your homework and demonstrate the program to any of the software seniors before your next tutorial session.
+### Note
+* Finish your homework and demonstrate the program to any of the software seniors before your next tutorial session.
+* There will be no skeleton code provided so you have to code your own code from the beginning
+
+**Libaries**
+
+```C
+#include <stdboo.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+```
 
 **Construct a Five in a Row game by using FSM and Libraries**
 Five in a Row is an abstract strategy board game. Two players take turn place their stones on board. Whoever make his stones five in a row first wins the game.
