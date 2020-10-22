@@ -4,11 +4,11 @@ Feedback from: Various Mentors
 # Contents
 
 * Answers
-	* [Q1](#q1-factorial-function)
-	* [Q2](#q2-taylor-series-of-sinx)
-	* [Q3](#q3-roman-numeral-converter)
-	* [Q4](#q4-reverse-integer)
-	* [Q5](#q5bonus-question-social-distancing)
+    * [Q1](#q1-factorial-function)
+    * [Q2](#q2-taylor-series-of-sinx)
+    * [Q3](#q3-roman-numeral-converter)
+    * [Q4](#q4-reverse-integer)
+    * [Q5](#q5bonus-question-social-distancing)
 * [Feedback](#general-general-feedback)
 
 # Tutorial 0 - Suggested Answer
@@ -280,9 +280,9 @@ For most of you, this might have been the first time writing C code—or writing
 A lot of people lost marks due to *undefined behaviour* from uninitialised variables. In C, most local variables should be initialised.
 
 ```
-int i;	//	Not guaranteed to be 0...
+int i;    //    Not guaranteed to be 0...
 char c; // Not guaranteed to be '\0'...
-	
+    
 int a[] = {1, 2, 3};
 printf("%d\n", a[i]); // Might crash the program!!!
 ```
@@ -303,8 +303,8 @@ int length = 10;
 int nums[length] = {...};
 
 for (int i = 0; i < length; i++) {
-	if (nums[i] > nums[i + 1])  // 🤯 nums[i + 1] is UB for i = length - 1 
-		...
+    if (nums[i] > nums[i + 1])  // 🤯 nums[i + 1] is UB for i = length - 1 
+        ...
 }
 ```
 
@@ -315,24 +315,24 @@ Consider:
 
 ```
 int funnyFunction(int what[], int haha) {
-	int x = 0;
-	for (int i = 0; i < haha; i++) {
-		if (what[i] % 2 == 0)
-			x++;
-	}
-	return x;
+    int x = 0;
+    for (int i = 0; i < haha; i++) {
+        if (what[i] % 2 == 0)
+            x++;
+    }
+    return x;
 }
 ```
 vs.
 
 ```
 int countEven(int arr[], int n) {
-	int sum = 0;
-	for (int i = 0; i < n; i++) {
-		if (arr[i] % 2 == 0)
-			sum++;
-	}
-	return sum;
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0)
+            sum++;
+    }
+    return sum;
 }
 ```
 
@@ -343,28 +343,28 @@ Find the bug:
 
 ```
 int countEven(int arr[], int n) {
-		int sum = 0;
-	int i = 0;
-		while (i < n) {
-			if (arr[i] % 2 == 0)
-	i++;
-				sum++;			
-	}
-	return sum;
-	}
+        int sum = 0;
+    int i = 0;
+        while (i < n) {
+            if (arr[i] % 2 == 0)
+    i++;
+                sum++;            
+    }
+    return sum;
+    }
 ```
 It's more obvious here:
 
 ```
 int countEven(int arr[], int n) {
-	int sum = 0;
-	int i = 0;
-	while (i < n) {
-		if (arr[i] % 2 == 0)
-			i++;
-		sum++;			
-	}
-	return sum;
+    int sum = 0;
+    int i = 0;
+    while (i < n) {
+        if (arr[i] % 2 == 0)
+            i++;
+        sum++;
+    }
+    return sum;
 }
 ```
 Most IDEs/environments have an auto-indent/auto-format option. We recommend you look for it and use it.
