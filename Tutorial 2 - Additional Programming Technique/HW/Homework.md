@@ -1,7 +1,7 @@
 # FSM & Libraries Homework
 
 ### Note
-* Finish your homework and demonstrate the program to any of the software seniors before your next tutorial session.
+* Finish your homework and submit your homework before next Wednesday (28/10/2020) at 12n.n.
 * There will be no skeleton code provided so you have to code your own code from the beginning
 
 **Libaries**
