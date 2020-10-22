@@ -37,7 +37,7 @@ As a bonus task, your program may also export these dates into a .txt file and i
 * Check if the input is valid, use the provided `invalid_input_msg()` function to inform the user of the invalid input and let the user input a date again.
 	* Invalid input here means out-of-bound month or date.
 * Separate the input into date, month, and year.
-    * You should use the provided `MONTHS` enum to enumerate months:
+    * You may use the provided `MONTHS` enum to help you deal with months:
     
 	```c
 	typedef enum {
@@ -144,7 +144,7 @@ As a bonus task, your program may also export these dates into a .txt file and i
 	2. 06/06/2004
 	3. 01/01/1933
 	```
-* The user should choose one of the saved data by entering a number and the program should print out the corresponding item.
+* The user should choose one of the saved data by entering a number and the program should print out the corresponding item. (The user will always input a valid choice here, meaning if there are only 3 choices, the user will always choose from 1,2 or 3)
     * Sample I/O:
     
 	```c
