@@ -1,4 +1,16 @@
-Author: Danny Lau (kkdlau@connect.ust.hk)
+Author: Danny Lau (kkdlau@connect.ust.hk)  
+Feedback from: Various Mentors
+
+# Contents
+
+* Answers
+	* [Contents](#contents)
+	* [Q1](#q1-factorial-function)
+	* [Q2](#q2-taylor-series-of-sinx)
+	* [Q3](#q3-roman-numeral-converter)
+	* [Q4](#q4-reverse-integer)
+	* [Q5](#q5bonus-question-social-distancing)
+* [Feedback](#general-general-feedback)
 
 # Tutorial 0 - Suggested Answer
 
@@ -41,7 +53,13 @@ uint64_t factorial(int f) {
 }
 ```
 
-## Q2: Taylor series of $\sin(x)$, at $a = 0$
+### General Feedback
+
+Most people did fine with this question.
+
+The major trip-up was using a smaller integer type, such as `int`, to store the result. However, the largest factorial a 32-bit int could hold is 12!. The fix was using a larger type (e.g. `uint64_t`) instead.
+
+## Q2: Taylor series of sin(x)
 
 ```c
 #include <stdint.h>
@@ -110,6 +128,9 @@ result += _pow(-1, x) *
 ```
 
 Although it may be a good idea, however, in terms of efficiency, using `_pow` is not the best solution. It's because `_pow` **consume more computation power** (`_pow` is implemented by iteration!) than `if` and `tenary operator`. 
+
+### General Feedback
+Most people did well on this. Those who used `int` instead of `uint64_t` in Q1 failed some test cases due to 13! messing up the sum.
 
 ## Q3: Roman Numeral Converter
 
@@ -188,6 +209,12 @@ int roman_to_int(const char s[], int length) {
     return sum + letter_value[s[length - 1]];
 }
 ```
+
+### General Feedback
+Most people did well here.
+
+Just like the samples above, it's a good idea to separate the letter-to-value mapping from the function in order to make your code more [*self-documenting*](https://en.wikipedia.org/wiki/Self-documenting_code).
+
 ## Q4: Reverse Integer
 
 ```c
@@ -201,6 +228,16 @@ int reverse(int x) {
     return reversed;
 }
 ```
+
+### General Feedback
+The majority did well here as well. The common issues were:
+
+1. Not initialising the `reversed` variable.
+2. Not handling negative numbers.
+
+Some approached this problem by treating `int x` as an array of individual digits and reusing the `_pow` function from Q2.
+
+This is fine, but by realising that you can "pop" the last digit from one int and "push" them to another int, you can write more efficient code.
 
 ## Q5(Bonus Question): Social Distancing
 
@@ -223,3 +260,116 @@ int max_distance(int seats[], int length){
     return max(dis, length - 1 - last_person);
 }
 ```
+
+### General Feedback
+This question tripped up a lot of people. There are three cases to consider:
+
+1. the longest sequence is on the left
+2. the longest sequence is on the right
+3. the longest sequence is in the middle
+
+For the first two cases, the length of the sequence of 0s is the answer, since Danny can sit at the very edge. For the last case, we need to divide by 2 (and round appropriately), since Danny has to sit in the middle.
+
+Some divided by 2 at the end of the function, right before returning. The problem with this approach is that you would still compare your `max_distance` variable with the sequence from the first two cases. One workaround for this is to use an additional variable to keep track of which case `max_distance` came from, and divide if needed. But that would definitely complicate the code.
+
+# General General Feedback
+
+For most of you, this might have been the first time writing C code—or writing code at all. Here's some general feedback to improve your approach and skills in programming.
+
+
+## Initialise your variables.
+A lot of people lost marks due to *undefined behaviour* from uninitialised variables. In C, most local variables should be initialised.
+
+```
+int i;	//	Not guaranteed to be 0...
+char c; // Not guaranteed to be '\0'...
+	
+int a[] = {1, 2, 3};
+printf("%d\n", a[i]); // Might crash the program!!!
+```
+
+This example *might* compile, but isn't guaranteed to work. It may print 1, 2, or 3, or might even crash the program. To make your code reliable, remember to initialise your variables.
+
+## Array Bounds
+```
+int array[5];
+array[5] = 100;  // 🤯
+```
+Accessing an array out of bounds. Another type of undefined behaviour. Your program may crash... or it may just carry on.
+
+This is more commonly seen while iterating.
+
+```
+int length = 10;
+int nums[length] = {...};
+
+for (int i = 0; i < length; i++) {
+	if (nums[i] > nums[i + 1])  // 🤯 nums[i + 1] is UB for i = length - 1 
+		...
+}
+```
+
+## Naming
+Good variable names communicate your intention better. This is beneficial to both *yourself* and the people reading your code (e.g. teammates, mentors).
+
+Consider:
+
+```
+int funnyFunction(int what[], int haha) {
+	int x = 0;
+	for (int i = 0; i < haha; i++) {
+		if (what[i] % 2 == 0)
+			x++;
+	}
+	return x;
+}
+```
+vs.
+
+```
+int countEven(int arr[], int n) {
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		if (arr[i] % 2 == 0)
+			sum++;
+	}
+	return sum;
+}
+```
+
+## Indentation
+Consistency allows you to spot irregularities a lot faster, and hence reduce time spent debugging. Indentation is no exception.
+
+Find the bug:
+
+```
+int countEven(int arr[], int n) {
+		int sum = 0;
+	int i = 0;
+		while (i < n) {
+			if (arr[i] % 2 == 0)
+	i++;
+				sum++;			
+	}
+	return sum;
+	}
+```
+It's more obvious here:
+
+```
+int countEven(int arr[], int n) {
+	int sum = 0;
+	int i = 0;
+	while (i < n) {
+		if (arr[i] % 2 == 0)
+			i++;
+		sum++;			
+	}
+	return sum;
+}
+```
+Most IDEs/environments have an auto-indent/auto-format option. We recommend you look for it and use it.
+
+## Submitting the Correct File
+
+A couple people submitted empty files or files which could not compile at all (due to missing symbols and whatnot). Please make sure you submit the correct file. Remember to save, remember to push, and check that the file on Github is correct.
