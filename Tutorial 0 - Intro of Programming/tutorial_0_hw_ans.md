@@ -4,7 +4,6 @@ Feedback from: Various Mentors
 # Contents
 
 * Answers
-	* [Contents](#contents)
 	* [Q1](#q1-factorial-function)
 	* [Q2](#q2-taylor-series-of-sinx)
 	* [Q3](#q3-roman-numeral-converter)
