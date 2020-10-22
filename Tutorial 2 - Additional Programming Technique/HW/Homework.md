@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 ```
 
 **Construct a Five in a Row game by using FSM and Libraries**
