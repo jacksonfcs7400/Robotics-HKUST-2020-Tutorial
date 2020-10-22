@@ -14,7 +14,7 @@
 ```
 
 **Construct a Five in a Row game by using FSM and Libraries**
-Five in a Row is an abstract strategy board game. Two players take turn place their stones on board. Whoever make his stones five in a row first wins the game.
+Five in a Row is an abstract strategy board game. Two players take turn place their stones on board. Whoever make his stones five in a row first wins the game(vertical, horizontal, and diagonal).
 
 **Game flow** 
 ![Gameflow](Picture.png)
@@ -27,7 +27,7 @@ Five in a Row is an abstract strategy board game. Two players take turn place th
 * If a certain point occupied by second-hand side, repesent it by a circle(O).
 example 
 ```
-   1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+   1  2  3  4  5  6  7  8  9  0  1  2  3  4  5 x
 1  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 2  .  X  O  .  .  .  .  .  .  .  .  .  .  .  .
 3  .  .  X  O  .  .  .  .  .  .  .  .  .  .  .
@@ -43,16 +43,21 @@ example
 3  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 4  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 5  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+y
 ```
 #### Construct states[20pts]
 * Construct enums: PLAYER1_TURN, PLAYER2_TURN
 * Construct states: StartState, GameState, EndState.
+* In StartState, you should wait for a key pressed to continue to the gaming stage.
+* In EndState, you should wait for a key press to exit the program.
 * All the two enums and three states are required, it is fine if you want to create more states.
 * 
 #### Input coordinate turn by turn and implement fool-proof mechanism[10pts]
+* Use scanf("%d %d", &x, &y) to get the input coordinates.
 * Change state between PLAYER1_TURN and PLAYER2_TURN each round.
 * If a certain point is already occupied, it should not be occupied again.
 * If user want to occupy a coordinate out of bounds, it should be banned.
+* [Reminder!!!]: x is for horizontal and y is for vertical coordinate.
 
 #### Winning-checking mechanism[15pts]
 * Check if any user make five in a row and change state to END_STATE.
