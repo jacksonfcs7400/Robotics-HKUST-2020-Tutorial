@@ -59,4 +59,4 @@ Output - output.bmp:
 
 ### Additional library
 
-In this example, we need to import a library to read and write bitmap file. Here is the original link of [QDBMP library](http://qdbmp.sourceforge.net/). However, we have created some additional functions to work better with 8-bit grayscale image. As a result, please make sure you **download the library from our Github repository** instead of the original link provided above.
+In this example, we need to import a library to read and write bitmap files. Here is the original link of [QDBMP library](http://qdbmp.sourceforge.net/). However, we have created some additional functions to work better with 8-bit grayscale images. As a result, please make sure you **download the library from our Github repository** instead of the original link provided above.

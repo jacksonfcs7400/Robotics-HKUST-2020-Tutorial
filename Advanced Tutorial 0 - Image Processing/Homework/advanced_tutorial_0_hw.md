@@ -4,11 +4,11 @@ Author : Tang Pok Lam
 
 ## Question: Sobel Filter
 
-In this homework, you are required to build a Sobel filter using the skeleton code provided. We have also provided you an example of a median filter to show you how to use the QDBMP library. You can find this example in example.md file.
+In this homework, you are required to build a Sobel filter using the skeleton code provided. We have also provided you with an example of a median filter to show you how to use the QDBMP library. You can find this example in the example.md file.
 
 ### Additional library
 
-In this homework, we need to import a library to read and write bitmap file. Here is the original link of [QDBMP library](http://qdbmp.sourceforge.net/). However, we have created some additional functions to work better with 8-bit grayscale image. As a result, please make sure you **download the library from our Github repository** instead of the original link provided above.
+In this homework, we need to import a library to read and write bitmap files. Here is the original link of [QDBMP library](http://qdbmp.sourceforge.net/). However, we have created some additional functions to work better with 8-bit grayscale images. As a result, please make sure you **download the library from our Github repository** instead of the original link provided above.
 
 ### Skeleton code
 ```c
@@ -61,6 +61,6 @@ You are **not required** to handle the outer edge (boundary) of the image.
 
 ## Submissions:
 
-Submission deadline: 4/11 12:00
+Submission deadline: 4/11 12:00 n.n. HKT.
 
 You are required to upload both your program (.c), input BMP file, and output BMP file to GitHub.

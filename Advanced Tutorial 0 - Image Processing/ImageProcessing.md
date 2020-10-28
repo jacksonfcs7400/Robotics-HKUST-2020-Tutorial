@@ -13,41 +13,41 @@ Updated by: Ho Yu Yat (yyhoai@connect.ust.hk) (2019)
 Updated by: Tang Pok Lam (pltangab@connect.ust.hk) (2020)
 
 ## Image in Computer
-Vision is one of the major preception systems in the Robotics field. 
-The robot received image or video data from the camera module and stored it on the RAM.
+Vision is one of the major perception systems in the robotics field. 
+The robot receives image or video data from the camera module and stores it in the RAM.
 
 Here is a camera module.
 
 <img width="360" alt="camera module" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Raspberry_Pi_Camera_Module_-_Hand-Held_%2814672275231%29.jpg">
 
-Images in computers or robots are stored in the **2D array**. You might have direct access to this array or only by a **pointer** given. Note that the coordinate system of image is different from the normal coordinate system in Mathematics. The origin (0, 0) is on the top-left corner of the iamge.
+Images in computers or robots are stored in a **2D array**. You may have direct access to this array or may only be given a **pointer**. Note that the coordinate system of an image in computing is different from the coordinate system normally used in mathematics. The origin (0, 0) is on the top-left corner of the iamge.
 
 <img width="240" alt="coordinate system" src="http://pippin.gimp.org/image_processing/images/coord_sys.png">
 
 
 ## Image Processing
 
-Image Processing are vital part in the Smart Car and ROV sub-team and the robot in the Robot Design Contest. Here is a quick and brief guide to it.
+Image Processing is a vital part in the Smart Car and ROV sub-teams as well as the robot in the Robot Design Contest. Here is a quick and brief guide.
 
 ### Before Image Processing
 
-Since the camera image is stored in pixels in a 2d array, it is important to know the concept and implementations of arrays.
+Since the camera image is stored in pixels in a 2D array, it is important to know the concept and implementations of arrays.
 
-Here is a 2D array with width 5 and height 3
+Here is a 2D array with width 5 and height 3:
 
 | [0][0] | [0][1] | [0][2] | [0][3] | [0][4] |
 | ------ | ------ | ------ | ------ | ------ |
 | [1][0] | [1][1] | [1][2] | [1][3] | [1][4] |
 | [2][0] | [2][1] | [2][2] | [2][3] | [2][4] |
 
-Below is a demonstration of a typical way to manipulate a 2D array:
+The following demonstrates the typical way to print and manipulate 2D arrays:
 
 ```c
 #include <stdio.h>
 #define WIDTH 5
 #define HEIGHT 3
-void print_array(int A[][WIDTH], int height){
-    for(int i = 0; i<height; i++) {
+void print_array(int A[][WIDTH], int height) {
+    for(int i = 0; i < height; i++) {
         for (int j = 0; j < WIDTH; j++) {
             printf("%d ", A[i][j]);
         }
@@ -56,8 +56,8 @@ void print_array(int A[][WIDTH], int height){
 }
 int main() {
     int myArray[HEIGHT][WIDTH];
-    for (int i = 0; i < HEIGHT; i++){
-        for (int j=0; j < WIDTH; j++){
+    for (int i = 0; i < HEIGHT; i++) {
+        for (int j = 0; j < WIDTH; j++) {
             myArray[i][j] = WIDTH * i + j;
         }
     }
@@ -75,65 +75,65 @@ Output
 
 ### 1. Image Type (Colored, Grayscale or Black&White)
 
-Although you might not have to the color mode setting of the camera module in the emulator, this is still worth knowing. It is very important for real-life situations since it will affect the quality of the image you obtain.
+Although a color mode setting may not exist in the emulator's camera, color modes are still worth learning. It is very important for real-life situations since it will affect the quality of the image you obtain.
 
 #### Colored
 
 <img width="360" alt="colored" src="https://user-images.githubusercontent.com/32810188/44947015-2f9d3180-ae39-11e8-854a-a32387a246ef.png">
 
-#### GrayScale
+#### Grayscale
 
 <img width="360" alt="greyscale" src="https://user-images.githubusercontent.com/32810188/44947020-404da780-ae39-11e8-8c8b-f1113f03550c.png">
 
 Please note that the images are rendered instead of taking in reality, so the image shown here may not fully represent the real image that you will be getting.
 
 #### RGB565
-If we want to have colored pictures, we also need information about the color. The color depth defines how many bits are used to represent a color. The more bits (information), the more colors we can display. There are different ways on how to represent a color but virtually all displays use RGB, where a color is represented by its Red Green and Blue components.
+If we want to have colored pictures, we also need information about the color. The color depth defines how many bits are used to represent a color. The more bits (information), the more colors we can display. There are different ways to represent a color but virtually all displays use RGB, where a color is represented by its Red, Green, and Blue components.
 
-RGB565 requires only 16 (5+6+5) bits/2 bytes and is commonly used with embedded screens. Each pixel occupies 2 bytes, the bits are split into 3 groups to represent RGB respectively.
+RGB565 requires only 16 (5+6+5) bits (i.e. 2 bytes) and is commonly used with embedded screens. Each pixel occupies 2 bytes, the bits are split into 3 groups to represent RGB respectively.
 
-R: Occupies 5 bits, so its value range from 00000 to 11111.
+R: Occupies 5 bits, so its value ranges from 00000 to 11111.
 
-G: Occupies 6 bits, so its value range from 000000 to 111111.
+G: Occupies 6 bits, so its value ranges from 000000 to 111111.
 
-B: Occupies 5 bits, so its value range from 00000 to 11111.
+B: Occupies 5 bits, so its value ranges from 00000 to 11111.
 
-Concatenate the 3 values in the order R, G, B. So if R=11011, G=110010 and B=11010, then the final RGB565 value is 1101111001011010.
+We concatenate the 3 values in the order R, G, B. So if R=11011, G=110010 and B=11010, then the final RGB565 value is 1101111001011010.
 
 <img width="480" alt="RGB565" src="https://www.newton.com.tw/img/7/e01/cGcq5SM0YDM5ADMkJGNxQmZ5QWM0UzMjJjN4AzLtVGdp9yYpB3LltWahJ2Lt92YuUHZpFmYuMmczdWbp9yL6MHc0RHa.jpg">
 
-We can also **convert RGB565 image to grayscale image**.
+We can also **convert RGB565 images to grayscale images**.
 
-You can get the RGB value respecively by bit shifting operation.
+Firstly, get the individual RGB components through bitwise operations.
 ```C++
 int16_t pixel = *buffer;
-int16_t red = ((pixel & 0xF800)>>11);
-int16_t green = ((pixel & 0x07E0)>>5);
+int16_t red = ((pixel & 0xF800) >> 11);
+int16_t green = ((pixel & 0x07E0) >> 5);
 int16_t blue = (pixel & 0x001F);
 ```
-Then, you need to combine red, green and blue value with weights to generate grayscale value.
+Then, combine the red, green and blue values with weights to generate a grayscale value.
 
-A common ratio (weights) is **R: 0.2989, G: 0.5870, B: 0.1140**
+A common ratio (weight) is **R: 0.2989, G: 0.5870, B: 0.1140**.
 
 Try it yourself.
 
-Note that the Green component have 6 bit, not because it needs to have higher values but because it needs higher resolution ([see RGB 565 - Why 6 Bits for Green Color](https://stackoverflow.com/questions/25467682/rgb-565-why-6-bits-for-green-color)).
+Note that the Green component has 6 bits, not because it needs higher values but because it needs higher resolution ([see RGB 565 - Why 6 Bits for Green Color](https://stackoverflow.com/questions/25467682/rgb-565-why-6-bits-for-green-color)).
 
 #### Pros and Cons
 
 - Colored: (colors are stored as RGB in the MCU)
-    - Pros: Contains lot of details
+    - Pros: Contains a lot of details
     - Cons: Hard to control
-- GreyScale: (range from 0 ~ 255, which black = 0 and white = 255)  **Recommended**
-    - Pros: Easier to control(compared to Colored image), able to use gradient to differentiate features
-    - Cons: 
-- Black & White: (represented by 1 and 0, which black = 1 and white = 0)
+- Grayscale: (range from 0 ~ 255, where black = 0 and white = 255)  **Recommended**
+    - Pros: Relatively easier to control, able to use gradient to differentiate features
+    - Cons: -
+- Black&White: (represented by 1 and 0, which black = 1 and white = 0)
     - Pros: Easiest to control
-    - Cons: Hard to adjust thresholding for the image, have minimal information
+    - Cons: Hard to adjust thresholding for the image, has minimal information
 
-These pros and cons are just a means to guide you. However, these rules aren't set in stone. It is general that for image processing, we would usually choose greyscale or black&white images to analyze as they provide adequate information in order to handle the dynamics of the car. The use of Colored image may provide more information but it is upto you to determine if the extra information available is of any substantial benefit.
+These pros and cons are just a means to guide you. However, these rules aren't set in stone. It is general that for image processing, we would usually choose greyscale or black&white images to analyze as they provide adequate information in order to handle the dynamics of the car. The use of colored images may provide more information but it is up to you to determine if the extra information available is of any substantial benefit.
 
-### 2.Brightness & Intensity
+### 2. Brightness & Intensity
 
 Apart from color choices, the brightness and the intensity of the image captured also affect the quality of the image you obtain, which in turn affect the ability to extract good data from it.
 
@@ -149,23 +149,23 @@ Apart from color choices, the brightness and the intensity of the image captured
 
 <img width="360" alt="highintense" src="https://user-images.githubusercontent.com/32810188/44949434-bbc44e80-ae63-11e8-8e68-152058dd8f3a.png">
 
-If you do not find the proper intensity, your image might contains noise that would deter you from processing the information accurately. It is important that the program you write is able to adjust the brightness and intensity based on different lighting conditions as it is against the rules to flash your program during the competition.
+If you do not find the proper intensity, your image might contain noise that would deter you from processing the information accurately. It is important that your program is able to adjust the brightness and intensity based on different lighting conditions as it is against the rules to flash your program during the competition.
 
-Here is a guideline if you want to write code to adjust the brightness and intensity of the image
+Here is a guideline if you want to write code to adjust the brightness and intensity of the image:
 
 https://pippin.gimp.org/image-processing/chap_point.html
 
 ## Convolution of image
 
-#### Introduce to kernel
+#### Introduce to Kernel
 
-A kernel is a square matrix that specifies spatial weights of various pixels in an image. Different image processing have different kernels.
+A kernel is a square matrix that specifies spatial weights of various pixels in an image. Different image processing contexts may use different kernels.
 
 <img width="480" alt="wrxle" src="https://user-images.githubusercontent.com/32810188/45767787-afb2fc00-bc6d-11e8-81a5-29ba95f1c94a.png">
 
 #### Convolution Process
 
-Convolution of a matrix involves laying a matrix over another and then calculating the weighted sum of all pixel values.In this example, it is using an 3x3 kernel for convolution. If the input image is a mxn array, then the ouput array should be (m-2)x(n-2).
+Convolution of a matrix involves laying a matrix over another and then calculating the weighted sum of all pixel values. The example below uses a 3x3 kernel for convolution. If the input image is a mxn array, then the output array would be (m-2)x(n-2).
 
 <img width="480" height="360" src="https://user-images.githubusercontent.com/32810188/45766774-f6ebbd80-bc6a-11e8-9aed-c7f57fe57159.JPG">
 
@@ -175,22 +175,22 @@ More examples:
 
 <img width="480" height="360" src="https://user-images.githubusercontent.com/32810188/45768526-bb9fbd80-bc6f-11e8-9d93-120bb90f9175.gif">
 
-## Application for convolution - Reducing Noise
+## Application of Convolution - Reducing Noise
 
-Usually image generated might contain noise and will have to be **filtered/ smoothened** to prevent it from affecting the image analysis. 
+Usually the image generated by a camera might contain noise and will have to be **filtered/ smoothened** to prevent it from affecting the image analysis. 
 
-There are mainly two types of noise which are salt-and-pepper noise and gaussian noise.
+There are mainly two types of noise: salt-and-pepper noise and Gaussian noise.
 
-### Salt-and-pepper Noise - Median Filter
+### Salt-and-Pepper Noise - Median Filter
 Salt-and-pepper noise is a form of noise sometimes seen on images. It is also known as impulse noise. This noise can be caused by sharp and sudden disturbances in the image signal. It presents itself as sparsely occurring white and black pixels.
 
 <img width="480" alt=" salt-and-pepper noise" src="https://static-01.hindawi.com/articles/tswj/volume-2014/826405/figures/826405.fig.0010a.jpg">
 
-For salt-and-pepper noise, we can use median filter.
+For salt-and-pepper noise, we can use a median filter.
 
 <img width="480" alt="median filter" src="https://www.researchgate.net/profile/Vu_Hoang_Minh/publication/320547422/figure/fig4/AS:551864018141185@1508586043638/3-3-kernel-in-median-filter.png">
 
-Use of a median filter to improve an image severely corrupted by defective pixels
+Use of a median filter to improve an image severely corrupted by defective pixels.
 
 <img width="480" alt="colored" src="https://i.imgur.com/v9DjmbP.png">
 
@@ -236,18 +236,18 @@ Gaussian noise is statistical noise having a probability density function equal 
 
 <img width="640" alt="gaussian noise" src="https://miro.medium.com/max/3264/1*nOkI4VIQKM5FaSVBP8TiZw.png">
 
-For Gaussian noise, we can use Gaussian filter kernel.
+For Gaussian noise, we can use a Gaussian filter kernel.
 
 <img width="240" alt="Gaussian filter kernel" src="https://4.bp.blogspot.com/-v4dH8qhFnEE/WqHaTPel8RI/AAAAAAAAI8g/AxIVu5i7mHU5UDcu6BkJQJj_UO11sMomwCLcBGAs/s1600/3x3%2BGaussian%2BKernel.png">
 
-## Application for convolution - Feature Dectection
+## Application for Convolution - Feature Dectection
 
 Here are some images that have gone through the convolution.
 
 <img width="480" alt="colored" src="https://i.imgur.com/T17jDCz.png">
 
-### Edge detection - Sobel filter
-Sobel filter can create an image emphasising edges which is very useful.
+### Edge Detection - Sobel Filter
+The Sobel filter emphasises edges of an image.
 
 <img width="640" alt="colored" src="https://slideplayer.com/slide/14419272/90/images/8/Sobel+operator+In+practice%2C+it+is+common+to+use%3A+Magnitude%3A.jpg">
 
@@ -259,7 +259,7 @@ After:
 
 <img width="360" alt="colored" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Bikesgray_sobel.JPG/300px-Bikesgray_sobel.JPG">
 
-Convolutions can extended to further detect other vital features of the track. Another key term to keep in mind is **Gradient**.
+Convolutions can be extended to further detect other vital features of the track. Another key term to keep in mind is **Gradient**.
 
 <img width="480" alt="colored" src="https://i.imgur.com/AbQLWej.png">
 
@@ -270,9 +270,9 @@ Convolutions can extended to further detect other vital features of the track. A
 2. Analyse features and algorithms from a mathematical and physical perspective. 
 3. Keep the program robust in order to tackle the worst cases possible. 
 4. Tuning the physical properties of the car is allowed and remains essential for ensuring the car runs according to plan.
-5. As images are stored in the form of matrices, keep in mind the run time of your program during feature extraction or **path planning.**
+5. As images are stored in the form of matrices, keep in mind the run time of your program during feature extraction or **path planning**.
 
 ### Further Pondering
 
-- Applying convolution to the whole image is an processor-intensive task, and might produce a large amount of unnecessary information. How to extract only the needed information in your application?
-- Or even better, only produce the needed information? (This will be crucial in our application)
+- Applying convolution to the whole image is a processor-intensive task and might produce a large amount of unnecessary information. How can we only extract the information needed?
+- Or even better, only *produce* the information needed? (This will be crucial in our application.)
